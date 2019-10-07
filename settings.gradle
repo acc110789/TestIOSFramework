@@ -1,0 +1,3 @@
+include ':app', ':kn_rocket'
+
+//enableFeaturePreview('GRADLE_METADATA')
