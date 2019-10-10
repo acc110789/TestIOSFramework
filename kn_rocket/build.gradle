@@ -3,9 +3,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply from: new File(projectDir.parentFile, 'android_lib.gradle')
 
-//apply plugin: 'kotlin-native-cocoapods'
-import org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask
-
 def frameworkName = "kn_rocket"
 def frameworkObjCPrefix = 'KN' // rocket
 
@@ -22,11 +19,8 @@ kotlin {
 
     targets {
 
-        fromPreset(presets.android, 'android')
         iosX64("ios")
         iosTargets = [ios]
-
-        println("rocket: iosTargets:" + iosTargets)
 
         configure(iosTargets) {
             binaries.framework { frame ->
@@ -72,30 +66,8 @@ kotlin {
         }
     }
 
-//    cocoapods {
-//        // Configure fields required by CocoaPods.
-//        summary = "Some description for a Kotlin/Native module dif2"
-//        homepage = "Link to a Kotlin/Native module homepage dif2"
-//    }
 
 
-    task iosFatFramework(type: FatFrameworkTask) {
-        // The fat framework must have the same base name as the initial frameworks.
-        baseName = frameworkName
-
-        String frameworkType = "DEBUG"
-        println("iosFatFrameworkType: $frameworkType")
-
-        // The default destination directory is '<build directory>/fat-framework'.
-        destinationDir = file("$buildDir/cocoapods/framework")
-
-        def frameworkList = new ArrayList()
-        iosTargets.forEach { oneTarget ->
-            frameworkList.add(oneTarget.binaries.getFramework(frameworkType))
-        }
-
-        from(frameworkList)
-    }
 }
 
 // workaround for https://youtrack.jetbrains.com/issue/KT-27170
