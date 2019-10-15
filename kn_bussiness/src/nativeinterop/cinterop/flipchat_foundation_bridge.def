@@ -3,4 +3,3 @@ headerFilter = Bolts.h BFTask.h
 
 package = kn.foundation.ios.applog
 language = Objective-C
-linkerOpts = /Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/Bolts-Tasks/libBolts-Tasks.a
