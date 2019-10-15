@@ -12,7 +12,7 @@ def configureFramework(framework) {
 //        isStatic = true
         transitiveExport = true
         export KN_FOUNDATION
-        linkerOpts(["-L/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/IMRProtoModelModule" , "-l/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/IMRComponent/libIMRComponent.a"])
+//        linkerOpts(["-L/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/IMRProtoModelModule" , "-l/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/IMRComponent/libIMRComponent.a"])
     }
 }
 
