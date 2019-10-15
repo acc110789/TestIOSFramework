@@ -22,7 +22,7 @@ kotlin {
         configure(iosTargets) {
             compilations.main.cinterops() {
                 create('flipchat_foundation_bridge') {
-                    compilerOpts(foundationCompilerOpts)
+                    compilerOpts(comOpts)
                 }
             }
         }
