@@ -1,0 +1,5 @@
+headers = IMRIndicatorView.h ImageAssets.h
+headerFilter = IMRIndicatorView.h ImageAssets.h
+
+package = kn.foundation.bd
+language = Objective-C

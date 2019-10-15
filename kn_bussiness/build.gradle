@@ -1,0 +1,82 @@
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlin-android-extensions'
+apply from: new File(projectDir.parentFile, 'kn_ext.gradle')
+
+apply from: new File(projectDir.parentFile, 'android_lib.gradle')
+
+ext.podsRoot = "/Users/zhangxiaolong/Documents/rocket_iOS/msg/Pods"
+def List<String> foundationCompilerOpts = new ArrayList<String>()
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/IMRComponent".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/TTThemed".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/TTBaseLib".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/IMRAppearance".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/TTTracker".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/Heimdallr".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/TTInstallService".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/BDABTestSDK/BDABTestSDK/Manager".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/BDABTestSDK/BDABTestSDK/Models".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/TTNetworkManager/TTNetworkManager.framework/Headers".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/BDALog".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Protobuf/objectivec".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/IMRNetworkModule".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/IMRAppFoundation".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/TTReachability/TTReachability/Classes".toString())
+foundationCompilerOpts.add("-I${ext.podsRoot}/Headers/Public/rocket_iOS".toString())
+
+
+def iosTargets
+
+kotlin {
+
+    targets {
+
+        iosX64("ios")
+        iosTargets = [ios]
+        fromPreset(presets.android, 'android')
+
+        configure(iosTargets) {
+            compilations.main.cinterops() {
+                create('flipchat_foundation_bridge') {
+                    compilerOpts(foundationCompilerOpts)
+                    linkerOpts(["-l/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/IMRComponent/libIMRComponent.a"])
+                }
+            }
+        }
+
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
+                api KN_FOUNDATION
+                api KN_PB
+            }
+        }
+
+        androidMain {
+            dependencies {
+                api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+                api KN_FOUNDATION
+                api KN_PB
+            }
+        }
+
+        iosMain {
+            dependencies {
+                api KN_FOUNDATION
+                api KN_PB
+//                api
+            }
+        }
+    }
+
+
+
+}
+
+// workaround for https://youtrack.jetbrains.com/issue/KT-27170
+configurations {
+    compileClasspath
+}

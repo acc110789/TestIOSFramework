@@ -1,5 +1,6 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlin-android-extensions'
+apply from: new File(projectDir.parentFile, 'kn_ext.gradle')
 
 apply from: new File(projectDir.parentFile, 'android_lib.gradle')
 
@@ -8,8 +9,10 @@ def frameworkObjCPrefix = 'KN' // rocket
 
 def configureFramework(framework) {
     configure(framework) {
-        isStatic = true
+//        isStatic = true
         transitiveExport = true
+        export KN_FOUNDATION
+        linkerOpts(["-L/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/IMRProtoModelModule" , "-l/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/IMRComponent/libIMRComponent.a"])
     }
 }
 
@@ -20,6 +23,7 @@ kotlin {
     targets {
 
         iosX64("ios")
+        fromPreset(presets.android, 'android')
         iosTargets = [ios]
 
         configure(iosTargets) {
@@ -51,17 +55,26 @@ kotlin {
         commonMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
+                api KN_FOUNDATION
+                api project(":kn_bussiness")
+                api KN_PB
             }
         }
 
         androidMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+                api KN_FOUNDATION
+                api project(":kn_bussiness")
+                api KN_PB
             }
         }
 
         iosMain {
             dependencies {
+                api KN_FOUNDATION
+                api project(":kn_bussiness")
+                api KN_PB
             }
         }
     }
