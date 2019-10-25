@@ -8,7 +8,7 @@ def frameworkName = "kn_rocket"
 def frameworkObjCPrefix = 'KN' // rocket
 
 
-def configureFramework(framework , linOpts) {
+def configureFramework(framework) {
     configure(framework) {
         isStatic = true
         transitiveExport = true
@@ -29,18 +29,18 @@ kotlin {
         configure(iosTargets) {
             binaries.framework { frame ->
                 baseName = frameworkName
-                configureFramework(frame , linOpts)
+                configureFramework(frame)
             }
 
             binaries {
                 def defaultDebugFramework = findFramework('', DEBUG)
                 if(defaultDebugFramework != null) {
-                    configureFramework(defaultDebugFramework , linOpts)
+                    configureFramework(defaultDebugFramework)
                 }
 
                 def defaultReleaseFramework = findFramework('', RELEASE)
                 if(defaultReleaseFramework != null) {
-                    configureFramework(defaultReleaseFramework , linOpts)
+                    configureFramework(defaultReleaseFramework)
                 }
             }
 
@@ -56,7 +56,7 @@ kotlin {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
                 api KN_FOUNDATION
-                api project(":kn_bussiness")
+                api project(":kn_bussiness@1")
                 api KN_PB
             }
         }
@@ -65,7 +65,7 @@ kotlin {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
                 api KN_FOUNDATION
-                api project(":kn_bussiness")
+                api project(":kn_bussiness@1")
                 api KN_PB
             }
         }
@@ -73,7 +73,7 @@ kotlin {
         iosMain {
             dependencies {
                 api KN_FOUNDATION
-                api project(":kn_bussiness")
+                api project(":kn_bussiness@1")
                 api KN_PB
             }
         }
