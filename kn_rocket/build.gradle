@@ -12,7 +12,6 @@ def configureFramework(framework) {
     configure(framework) {
         isStatic = true
         transitiveExport = true
-        export KN_FOUNDATION
     }
 }
 
@@ -55,20 +54,20 @@ kotlin {
         commonMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-                api project(":kn_bussiness@1")
+                api project(business_module_name)
             }
         }
 
         androidMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-                api project(":kn_bussiness@1")
+                api project(business_module_name)
             }
         }
 
         iosMain {
             dependencies {
-                api project(":kn_bussiness@1")
+                api project(business_module_name)
             }
         }
     }
