@@ -7,7 +7,7 @@ apply from: new File(projectDir.parentFile, 'android_lib.gradle')
 def frameworkName = "kn_rocket"
 def frameworkObjCPrefix = 'KN' // rocket
 
-def business_module_name = ":kn_bussiness@1"
+def business_module_name = ":kn_bussiness"
 
 
 def configureFramework(framework) {

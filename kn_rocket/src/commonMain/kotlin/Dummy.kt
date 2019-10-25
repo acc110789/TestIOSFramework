@@ -1,4 +1,3 @@
-import com.kn.foundation.KNSystemClock
 import me.test.TestHehe
 
 class Dummy {

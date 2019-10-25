@@ -1,6 +1,5 @@
 package com.rocket.kn
 
-import com.kn.foundation.KNSystemClock
 import me.test.RocketToastUtil
 
 /**
@@ -14,8 +13,7 @@ object IOSInitializers {
     fun getHelloWorld(): String {
         RocketToastUtil.showToastWithSuccessIcon("aaaa")
 
-        val time: Long = KNSystemClock.currentTimeMillis()
-
+        val time = 0L
 //        val request = CreatePeppaCalRequest.Builder().client_id("111").build()
 //        val peppaId = request.knClientId
 //        println("peppaId: $peppaId")
