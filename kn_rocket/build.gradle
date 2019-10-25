@@ -55,26 +55,20 @@ kotlin {
         commonMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-                api KN_FOUNDATION
                 api project(":kn_bussiness@1")
-                api KN_PB
             }
         }
 
         androidMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-                api KN_FOUNDATION
                 api project(":kn_bussiness@1")
-                api KN_PB
             }
         }
 
         iosMain {
             dependencies {
-                api KN_FOUNDATION
                 api project(":kn_bussiness@1")
-                api KN_PB
             }
         }
     }

@@ -4,11 +4,6 @@ apply from: new File(projectDir.parentFile, 'kn_ext.gradle')
 
 apply from: new File(projectDir.parentFile, 'android_lib.gradle')
 
-ext.podsRoot = "/Users/zhangxiaolong/Documents/rocket_iOS/msg/Pods"
-def List<String> comOpts = new ArrayList<String>()
-comOpts.add("-I${ext.podsRoot}/Headers/Public/".toString())
-comOpts.add("-I${ext.podsRoot}/Headers/Public/Bolts".toString())
-
 def iosTargets
 
 kotlin {
@@ -19,13 +14,6 @@ kotlin {
         iosTargets = [ios]
         fromPreset(presets.android, 'android')
 
-        configure(iosTargets) {
-            compilations.main.cinterops() {
-                create('flipchat_foundation_bridge') {
-                    compilerOpts(comOpts)
-                }
-            }
-        }
 
     }
 
@@ -33,24 +21,17 @@ kotlin {
         commonMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-                api KN_FOUNDATION
-                api KN_PB
             }
         }
 
         androidMain {
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-                api KN_FOUNDATION
-                api KN_PB
             }
         }
 
         iosMain {
             dependencies {
-                api KN_FOUNDATION
-                api KN_PB
-//                api
             }
         }
     }

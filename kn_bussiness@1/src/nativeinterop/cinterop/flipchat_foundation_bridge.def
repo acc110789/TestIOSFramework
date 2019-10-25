@@ -1,5 +1,0 @@
-headers = Bolts.h BFTask.h
-headerFilter = Bolts.h BFTask.h
-
-package = kn.foundation.ios.applog
-language = Objective-C
