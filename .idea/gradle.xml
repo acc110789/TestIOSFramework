@@ -12,8 +12,22 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/kn_bussiness" />
             <option value="$PROJECT_DIR$/kn_bussiness@1" />
             <option value="$PROJECT_DIR$/kn_rocket" />
+          </set>
+        </option>
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="disableWrapperSourceDistributionNotification" value="true" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/kn_bussiness" />
+        <option name="gradleHome" value="$USER_HOME$/gradle/gradle-5.1" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/kn_bussiness" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />

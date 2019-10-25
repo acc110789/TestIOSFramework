@@ -1,0 +1,46 @@
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlin-android-extensions'
+apply from: new File(projectDir.parentFile, 'kn_ext.gradle')
+
+apply from: new File(projectDir.parentFile, 'android_lib.gradle')
+
+def iosTargets
+
+kotlin {
+
+    targets {
+
+        iosX64("ios")
+        iosTargets = [ios]
+        fromPreset(presets.android, 'android')
+
+
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
+            }
+        }
+
+        androidMain {
+            dependencies {
+                api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+            }
+        }
+
+        iosMain {
+            dependencies {
+            }
+        }
+    }
+
+
+
+}
+
+// workaround for https://youtrack.jetbrains.com/issue/KT-27170
+configurations {
+    compileClasspath
+}

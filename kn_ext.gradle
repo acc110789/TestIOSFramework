@@ -1,6 +1,4 @@
 ext {
     serialization_version = '0.12.0'
 
-    business_module_name = ":kn_bussiness@1"
-
 }
