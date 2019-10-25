@@ -7,16 +7,12 @@ apply from: new File(projectDir.parentFile, 'android_lib.gradle')
 def frameworkName = "kn_rocket"
 def frameworkObjCPrefix = 'KN' // rocket
 
-def List<String> linOpts = new ArrayList<String>()
-linOpts.add("-L/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/Bolts-Tasks")
-linOpts.add("-llibBolts-Tasks.a")
 
-def configureFramework(framework) {
+def configureFramework(framework , linOpts) {
     configure(framework) {
-//        isStatic = true
+        isStatic = true
         transitiveExport = true
         export KN_FOUNDATION
-        linkerOpts("/Users/zhangxiaolong/Library/Developer/Xcode/DerivedData/msg-beggxdbopcmycybswizcskzkmuef/Build/Products/Debug-iphonesimulator/Bolts-Tasks/libBolts-Tasks.a")
     }
 }
 
@@ -33,18 +29,18 @@ kotlin {
         configure(iosTargets) {
             binaries.framework { frame ->
                 baseName = frameworkName
-                configureFramework(frame)
+                configureFramework(frame , linOpts)
             }
 
             binaries {
                 def defaultDebugFramework = findFramework('', DEBUG)
                 if(defaultDebugFramework != null) {
-                    configureFramework(defaultDebugFramework)
+                    configureFramework(defaultDebugFramework , linOpts)
                 }
 
                 def defaultReleaseFramework = findFramework('', RELEASE)
                 if(defaultReleaseFramework != null) {
-                    configureFramework(defaultReleaseFramework)
+                    configureFramework(defaultReleaseFramework , linOpts)
                 }
             }
 
